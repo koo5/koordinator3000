@@ -136,9 +136,22 @@ export default {
 
 		preserveEntrySignatures: false,
 		onwarn,
+		
+		
+		watch: {
+			clearScreen: false
+		},
+
 	},
 
 	server: {
+		
+		watch: {
+			clearScreen: false
+		},
+
+
+		
 		input: { server: config.server.input().server.replace(/\.js$/, ".ts") },
 		output: { ...config.server.output(), sourcemap },
 		plugins: [
@@ -159,7 +172,7 @@ export default {
 			}),
 			commonjs({ sourceMap: !!sourcemap }),
 			typescript({
-				noEmitOnError: !dev,
+				noEmitOnError: true,//!dev,
 				sourceMap: !!sourcemap,
 			}),
 			json(),
