@@ -17,6 +17,7 @@
 		"types": [
 			"svelte"
 		],
+		 "noImplicitAny": false,
 	},
 	"include": [
 		"src/**/*",

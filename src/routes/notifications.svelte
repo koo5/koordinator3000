@@ -1,7 +1,7 @@
 <script type='js'>
 	import gql from 'graphql-tag';
 	import {client} from '../apollo';
-	import {subscribe} from 'svelte-apollo';
+	//import { subscribe } from 'svelte-apollo';
 	import Notification from '../components/Notification.svelte';
 	import {my_user} from '../my_user';
 
@@ -26,7 +26,7 @@
 
 	function maybe_subscribe(my_user)
 	{
-		if(my_user)
+		if(process.browser)
 		{
 			return subscribe(
 				client,
@@ -38,16 +38,6 @@
 				}
 			)
 		}
-		else
-			return subscribe(
-				client,
-				{
-					query: LIST,
-					variables: {
-						_user_id: 0
-					}
-				}
-			)
 	}
 
 	$: notifications = maybe_subscribe($my_user);
@@ -56,7 +46,7 @@
 
 <ul>
 
-	{#if $notifications !== 5}
+	{#if $notifications !== null}
 		{#await $notifications}
 			<li>Loading...</li>
 		{:then result}

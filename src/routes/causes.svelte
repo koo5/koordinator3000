@@ -1,11 +1,11 @@
 <script type='js'>
 	import { client } from '../apollo';
     import gql from 'graphql-tag';
-    import { subscribe } from 'svelte-apollo';
+    //import { subscribe } from 'svelte-apollo';
 	import Campaign from '../components/Campaign.svelte';
 
 
-  const causeList = subscribe(client, { query:
+  const causeList = process.browser ? subscribe(client, { query:
 	  gql`
 		subscription {
 		  causes(order_by: [{id: asc}]) {
@@ -16,7 +16,7 @@
 		  }
 		}
 	  `
-  })
+  }) : null;
 
 </script>
 

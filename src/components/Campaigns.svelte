@@ -1,16 +1,21 @@
 <script type='js'>
 	import gql from 'graphql-tag';
-	import {client} from '../apollo';
-	import {subscribe} from 'svelte-apollo';
+	import { client } from '../apollo';
+	//import { subscribe } from 'svelte-apollo';
 	import Campaign from '../components/Campaign.svelte';
-	import {my_user} from '../my_user';
+	import { my_user } from '../my_user';
+	import { onMount } from "svelte";
 
 
-
-
-	import ProgressBar from "@okrad/svelte-progressbar";
+	let ProgressBar;
 	let series = [20,16];
-	
+
+	onMount(async () => {
+		ProgressBar = (await import("@okrad/svelte-progressbar")).default;
+	});
+
+
+
 	// Import Swiper Svelte components
 	import { Swiper, SwiperSlide } from 'swiper/svelte';
 
@@ -56,13 +61,13 @@
 			my_user_id = my_user.id
 		else
 			my_user_id = 0;
-		return subscribe(client, {
+		return process.browser ? subscribe(client, {
 				query: CAMPAIGN_LIST,
 				variables: {
 					_user_id: my_user_id
 				}
 			}
-		)
+		) : null
 	}
 
 	$: campaigns = maybe_subscribe($my_user);
@@ -76,7 +81,7 @@
 	{:then result}
 
 
-		<ProgressBar {series} height={2} showProgressValue=false />
+		<svelte:component this={ProgressBar} {series} height={2} showProgressValue=false />
 		<button on:click={() => series = [50, 50]}>fill</button>
 		<button on:click={() => series = [0, 0]}>clear</button>
 

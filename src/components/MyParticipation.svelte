@@ -28,20 +28,19 @@
 	{
 		try
 		{
-			await mutation(client, {
-				mutation: gql`
+			await mutation(gql`
 					mutation MyMutation($campaign_id: Int, $user_id: Int, $threshold: Int) {
 					  insert_participations(objects: {campaign_id: $campaign_id, user_id: $user_id, threshold: $threshold}, on_conflict: {constraint: participations_campaign_id_user_id, update_columns: threshold}) {
 						affected_rows
 					  }
 					}
-				`,
-				variables: {
-					campaign_id: campaign.id,
-					user_id: $my_user.id,
-					threshold: new_threshold
-				}
-			})
+				`)({
+					variables: {
+						campaign_id: campaign.id,
+						user_id: $my_user.id,
+						threshold: new_threshold
+					}
+				})
 		} catch (e)
 		{
 			console.log(e)
@@ -52,7 +51,7 @@
 	{
 		try
 		{
-			await mutation(client, {
+			await mutate(client, {
 				mutation: gql`
 					mutation MyMutation($id: Int!) {
 						delete_participations_by_pk(id: $id)
