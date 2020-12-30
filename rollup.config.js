@@ -12,6 +12,25 @@ import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup";
 import pkg from "./package.json";
 
+
+
+
+//hy?
+    import ProgressBar from "@okrad/svelte-progressbar";
+    let series = [20,16];
+
+
+    // Import Swiper Svelte components
+    import { Swiper, SwiperSlide } from 'swiper/svelte';
+                
+    // Import Swiper styles
+    import 'swiper/swiper.scss';
+
+
+
+
+
+
 const { createPreprocessors } = require("./svelte.config.js");
 
 const mode = process.env.NODE_ENV;
