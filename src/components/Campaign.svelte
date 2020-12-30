@@ -1,7 +1,4 @@
-<script>
-	import gql from 'graphql-tag';
-	import {client} from './apollo';
-	import {subscribe} from 'svelte-apollo';
+<script lang='js'>
 	import MyParticipation from './MyParticipation.svelte';
 
 	export let campaign;

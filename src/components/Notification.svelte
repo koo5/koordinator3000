@@ -1,8 +1,8 @@
-<script>
-  import gql from 'graphql-tag';
-  import { client } from './apollo';
+<script type='js'>
+/*  import gql from 'graphql-tag';
+  import { client } from '../apollo';
 	import {subscribe, mutate} from 'svelte-apollo';
-
+*/
   export let notification;
 /*
 	async function update()

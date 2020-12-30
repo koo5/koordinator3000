@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" type='js'>
 	export const preload = () => {};
 </script>
 
@@ -34,9 +34,9 @@
 	</title>
 </svelte:head>
 
-<PageReloadClock/>
 
 <nav>
+	<PageReloadClock/>
 	<a href=".">Welcome</a>
 	<a href="causes">Causes</a>
 	<a href="add_cause">Add Cause</a>

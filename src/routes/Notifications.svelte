@@ -1,9 +1,10 @@
-<script>
+<script type='js'>
 	import gql from 'graphql-tag';
-	import {client} from './apollo';
+	gql=gql;
+	import {client} from '../client';
 	import {subscribe} from 'svelte-apollo';
-	import Notification from './Notification.svelte';
-	import {my_user} from './my_user';
+	import Notification from '../components/Notification.svelte';
+	import {my_user} from '../my_user';
 
 //	      		order_by: [{id: desc}]
 

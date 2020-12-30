@@ -1,9 +1,8 @@
-<script>
-	import {my_user} from './my_user.js';
+<script type='js'>
+	import {my_user} from '../my_user.js';
 	import gql from 'graphql-tag';
-	import {client} from './apollo';
-	import {subscribe, mutate} from 'svelte-apollo';
-	  import { onMount } from 'svelte';
+	import {client} from '../apollo';
+	import {mutate} from 'svelte-apollo';
 
 	export let campaign;
 	let new_threshold = campaign.suggested_optimal_threshold;
@@ -12,6 +11,7 @@
 
 	function get_my_participation(campaign, my_user)
 	{
+		my_user=my_user
 		if (campaign.my_participations.length == 1)
 		{
 			let p = campaign.my_participations[0]

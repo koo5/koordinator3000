@@ -1,4 +1,4 @@
-<script>
+<script type='js'>
 	import { onMount } from "svelte";
 
 	let timer = 0;

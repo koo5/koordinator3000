@@ -1,12 +1,11 @@
 <script>
+	import Campaigns from "../components/Campaigns.svelte";
+
 </script>
 
 <style>
 
 </style>
-<!--
-<hr>
-<div class:centerer={true}> Here's how you could extract conditional class groups with @apply
-	xxx
-</div>
--->
+
+Welcome to Koordinator. Featured Campaigns:
+<Campaigns/>

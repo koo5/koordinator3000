@@ -1,5 +1,5 @@
-<script>
-	import { client } from './apollo';
+<script type='js'>
+	import { client } from '../apollo';
     import gql from 'graphql-tag';
     import { subscribe } from 'svelte-apollo';
 	import Campaign from './Campaign.svelte';
@@ -12,6 +12,7 @@
 			id,
 			title,
 			description,
+			campaigns,
 		  }
 		}
 	  `
@@ -37,7 +38,7 @@ Causes are higher-level than actions. A cause can have multiple associated actio
       <p>{cause.description}</p>
 
       {#each cause.campaigns as campaign (campaign.id)}
-		  <Campaign id:campaign.id />
+		  <Campaign {campaign} />
       {/each}
 
     {:else}

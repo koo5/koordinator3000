@@ -1,7 +1,7 @@
-<script>
+<script type='js'>
   import gql from 'graphql-tag';
-  import { client } from './apollo';
-  import { impersonate } from './my_user.js';
+  import { client } from '../apollo';
+  import { impersonate } from '../my_user.js';
   import { subscribe } from 'svelte-apollo';
 
   const USER_LIST = gql`

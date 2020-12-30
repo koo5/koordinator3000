@@ -1,5 +1,5 @@
-<script>
-	import {ui_mode} from './settings';
+<script type='js'>
+	//import {ui_mode} from '../settings';
 
 </script>
 

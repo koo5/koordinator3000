@@ -1,9 +1,9 @@
-<script>
+<script type='js'>
 	import gql from 'graphql-tag';
-	import {client} from './apollo';
+	import {client} from '../client';
 	import {subscribe} from 'svelte-apollo';
-	import Campaign from './Campaign.svelte';
-	import {my_user} from './my_user';
+	import Campaign from '../components/Campaign.svelte';
+	import {my_user} from '../my_user';
 
 
 

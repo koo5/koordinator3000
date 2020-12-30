@@ -1,7 +1,7 @@
-<script>
-	import {client} from './apollo';
+<script type='js'>
+	import {client} from '../apollo';
 	import {setClient} from 'svelte-apollo';
-	import {my_user} from './my_user';
+	import {my_user} from '../my_user';
 	import {onMount} from 'svelte';
 
 	import Users from './Users.svelte';
