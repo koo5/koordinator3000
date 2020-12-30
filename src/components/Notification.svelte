@@ -1,7 +1,7 @@
 <script type='js'>
 /*  import gql from 'graphql-tag';
   import { client } from '../apollo';
-	import {subscribe, mutate} from 'svelte-apollo';
+	import {subscribe, mutation} from 'svelte-apollo';
 */
   export let notification;
 /*
@@ -9,7 +9,7 @@
 	{
 		try
 		{
-			await mutate(client, {
+			await mutation(client, {
 				mutation: gql`
 
 				`,

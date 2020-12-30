@@ -1,6 +1,6 @@
 <script type='js'>
 	import gql from 'graphql-tag';
-	import {client} from '../client';
+	import {client} from '../apollo';
 	import {subscribe} from 'svelte-apollo';
 	import Campaign from '../components/Campaign.svelte';
 	import {my_user} from '../my_user';
@@ -10,14 +10,13 @@
 
 	import ProgressBar from "@okrad/svelte-progressbar";
 	let series = [20,16];
-
-
+	
 	// Import Swiper Svelte components
 	import { Swiper, SwiperSlide } from 'swiper/svelte';
 
 	// Import Swiper styles
 	import 'swiper/swiper.scss';
-
+	//import 'swiper-bundle.css';
 
 
 

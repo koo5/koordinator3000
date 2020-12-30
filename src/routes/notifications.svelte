@@ -1,7 +1,6 @@
 <script type='js'>
 	import gql from 'graphql-tag';
-	gql=gql;
-	import {client} from '../client';
+	import {client} from '../apollo';
 	import {subscribe} from 'svelte-apollo';
 	import Notification from '../components/Notification.svelte';
 	import {my_user} from '../my_user';

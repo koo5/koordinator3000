@@ -40,8 +40,8 @@
 	<a href=".">Welcome</a>
 	<a href="causes">Causes</a>
 	<a href="add_cause">Add Cause</a>
-	<a href="actions">Actions</a>
-	<a href="add_action">Add Action</a>
+	<a href="campaigns">Campaigns</a>
+	<a href="add_campaign">Add Campaign</a>
 	<a href="notifications">Notifications</a>
 	<a href="you">You</a>
 	<a href="users">Users</a>

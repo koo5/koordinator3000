@@ -1,6 +1,6 @@
 <script type='js'>
   import { onMount } from 'svelte';
-  import { mutate } from 'svelte-apollo';
+  import { mutation } from 'svelte-apollo';
   import { client } from '../apollo';
   import gql from 'graphql-tag';
 	import {my_user} from '../my_user.js';
@@ -61,7 +61,7 @@
         }
       };
       status = mut;
-      await mutate(client, mut);
+      await mutation(client, mut);
       status = "Added successfully";
       clearForm()
     } catch(error) {

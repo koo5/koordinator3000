@@ -2,7 +2,7 @@
 	import { client } from '../apollo';
     import gql from 'graphql-tag';
     import { subscribe } from 'svelte-apollo';
-	import Campaign from './Campaign.svelte';
+	import Campaign from '../components/Campaign.svelte';
 
 
   const causeList = subscribe(client, { query:

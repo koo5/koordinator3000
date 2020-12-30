@@ -11,6 +11,7 @@ import colors from "kleur";
 import { terser } from "rollup-plugin-terser";
 import config from "sapper/config/rollup";
 import pkg from "./package.json";
+import scss from 'rollup-plugin-scss';
 
 const { createPreprocessors } = require("./svelte.config.js");
 
@@ -36,6 +37,7 @@ export default {
 		input: config.client.input().replace(/\.js$/, ".ts"),
 		output: { ...config.client.output(), sourcemap },
 		plugins: [
+			scss(),
 			replace({
 				"process.browser": true,
 				"process.env.NODE_ENV": JSON.stringify(mode),
@@ -160,6 +162,7 @@ export default {
 				"process.env.NODE_ENV": JSON.stringify(mode),
 				"module.require": "require",
 			}),
+			scss(),
 			svelte({
 				compilerOptions: {
 					dev,

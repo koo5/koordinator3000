@@ -3,12 +3,17 @@ const postcss = require("./postcss.config");
 
 const createPreprocessors = ({ sourceMap }) => [
 	sveltePreprocess({
+        scss: {
+          includePaths: ['src'],
+        },
 		sourceMap,
 		defaults: {
 			script: "typescript",
 			style: "postcss",
 		},
-		postcss,
+		postcss :{
+          plugins: [require('autoprefixer')],
+		}
 	}),
 	// You could have more preprocessors, like mdsvex
 ];

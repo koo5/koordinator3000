@@ -2,7 +2,7 @@
 	import {my_user} from '../my_user.js';
 	import gql from 'graphql-tag';
 	import {client} from '../apollo';
-	import {mutate} from 'svelte-apollo';
+	import {mutation} from 'svelte-apollo';
 
 	export let campaign;
 	let new_threshold = campaign.suggested_optimal_threshold;
@@ -28,7 +28,7 @@
 	{
 		try
 		{
-			await mutate(client, {
+			await mutation(client, {
 				mutation: gql`
 					mutation MyMutation($campaign_id: Int, $user_id: Int, $threshold: Int) {
 					  insert_participations(objects: {campaign_id: $campaign_id, user_id: $user_id, threshold: $threshold}, on_conflict: {constraint: participations_campaign_id_user_id, update_columns: threshold}) {
@@ -52,7 +52,7 @@
 	{
 		try
 		{
-			await mutate(client, {
+			await mutation(client, {
 				mutation: gql`
 					mutation MyMutation($id: Int!) {
 						delete_participations_by_pk(id: $id)
