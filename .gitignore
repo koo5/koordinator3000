@@ -9,3 +9,4 @@ __sapper__/
 /static/global.css
 /static/global.css.map
 .idea/workspace.xml
+bundle.css

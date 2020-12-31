@@ -55,6 +55,7 @@
 		"apollo-client": "^2.6.10",
 		"apollo-link-http": "^1.5.17",
 		"apollo-link-ws": "^1.0.20",
+		"express-openid-connect": "^2.1.0",
 		"firebase": "^8.2.1",
 		"graphql-tag": "^2.11.0",
 		"style-loader": "^2.0.0",
