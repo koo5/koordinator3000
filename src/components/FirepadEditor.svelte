@@ -11,23 +11,8 @@
 		init();
 	});
 
-	function getExampleRef() {
-		var ref = firebase.database().ref();
-		var hash = window.location.hash.replace(/#/g, "");
-		if (hash) {
-			ref = ref.child(hash);
-		} else {
-			ref = ref.push(); // generate unique location.
-			window.location = window.location + "#" + ref.key; // add it as a hash to the URL.
-		}
-		if (typeof console !== "undefined") {
-			console.log("Firebase data: ", ref.toString());
-		}
-		return ref;
-	}
-
 	function init() {
-		window.firebase = firebase;
+		//window.firebase = firebase;
 		var firebase_config = {
 			apiKey: "<API_KEY>",
 			authDomain: "firepad-gh-tests.firebaseapp.com",
@@ -36,7 +21,7 @@
 		firebase.initializeApp(firebase_config);
 
 		//// Get Firebase Database reference.
-		var firepadRef = getExampleRef();
+		var firepadRef = "a123srtrtful--srtrstustr4545";
 		console.log(firepadRef);
 
 		//// Create CodeMirror (with lineWrapping on).
@@ -128,6 +113,20 @@
 
 </script>
 
+
+<svelte:head>
+
+	<!-- CodeMirror -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css"/>
+
+	<!-- Firepad -->
+	<link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css"/>
+	<script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+
+</svelte:head>
+
+
 <style>
     #firepad-container {
       width: 100%;
@@ -139,5 +138,7 @@
 </style>
 
 
+
 <div id="firepad-container" bind:this={firepad_container}></div>
+
 

@@ -10,10 +10,12 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"importsNotUsedAsValues": "error",
-		"isolatedModules": true,
+		"isolatedModules": false,
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"strict": false,
+	  	"noUnusedLocals" : true,
+	  	//"noUnusedParameters": true,
 		"types": [
 			"svelte"
 		],

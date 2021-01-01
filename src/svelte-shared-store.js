@@ -59,4 +59,9 @@ function makeLocalStorageSharedStore(name) {
 	};
 }
 
-export const localStorageSharedStore = (name) => makeLocalStorageSharedStore(`svelte-shared-store:${name}`);
+//export const localStorageSharedStore = (name) => makeLocalStorageSharedStore(`svelte-shared-store:${name}`);
+export const localStorageSharedStore = (name) => {
+	var r = writable();
+	return r;
+}
+

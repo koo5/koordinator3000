@@ -74,6 +74,8 @@
 
 </script>
 
+{process.browser}
+{#if process.browser}
 
 <ul>
 	{#await $campaigns}
@@ -124,3 +126,6 @@
 	{/await}
 </ul>
 
+{:else}
+	loading..
+{/if}

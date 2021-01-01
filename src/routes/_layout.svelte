@@ -20,15 +20,6 @@
 </script>
 
 <svelte:head>
-
-	<!-- CodeMirror -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css"/>
-
-	<!-- Firepad -->
-	<link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css"/>
-	<script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
-
 	<title>
 		{path ? path.charAt(0).toUpperCase() + path.slice(1) : "Index"}
 	</title>
@@ -45,6 +36,7 @@
 	<a href="notifications">Notifications</a>
 	<a href="you">You</a>
 	<a href="users">Users</a>
+	<a href="auth0">Auth0</a>
 </nav>
 
 <slot />

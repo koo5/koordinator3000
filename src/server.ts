@@ -10,11 +10,12 @@ const dev = mode === "development";
 
 const main = require.main === module || require.main?.filename.match(/__sapper__\/build\/index.js$/);
 
-const createSapperAndApolloServer = async (graphqlPath = "/graphql") => {
+const createSapperAndApolloServer = async (graphqlPath = "/graphql"): Promise<Express> => {
 	const app = express();
 
 	const apolloServer = await createApolloServer();
-	apolloServer.applyMiddleware({ app, path });
+
+	apolloServer.applyMiddleware({ app, path: graphqlPath });
 
 	if (main) {
 		app.use(sirv("static", { dev }));
@@ -30,7 +31,7 @@ const createSapperAndApolloServer = async (graphqlPath = "/graphql") => {
 
 if (main) {
 	createSapperAndApolloServer("/graphql").then((app) => {
-		app.listen(PORT, (err) => { // eslint-disable-line
+		app.listen(PORT, (err?: any): void => { // eslint-disable-line
 			if (err) console.log("error", err);
 		});
 	});
