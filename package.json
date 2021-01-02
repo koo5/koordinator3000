@@ -133,8 +133,6 @@
 		"svelte": "^3.31.0",
 		"svelte-check": "^1.1.24",
 		"svelte-preprocess": "^4.6.1",
-		"svelte-swiper": "^1.0.1",
-		"tailwindcss": "^2.0.2",
 		"tslib": "^2.0.3",
 		"type-graphql": "^1.1.1",
 		"typescript": "^4.1.3",

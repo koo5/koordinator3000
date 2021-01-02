@@ -1,3 +1,15 @@
+<style>
+
+
+	.slide	{
+		background-color: orange;
+		width: 600;
+	}
+
+
+</style>
+
+
 <script type='js'>
 	import gql from 'graphql-tag';
 	import { subscribe } from 'svelte-apollo';
@@ -20,21 +32,8 @@
 
 	import { Swiper, SwiperSlide } from 'swiper/svelte';
 	import SwiperCore, { EffectFade } from 'swiper';
-
-
 	import 'swiper/swiper-bundle.css';
-
-	//import 'swiper/swiper.scss';
-	//import 'swiper/components/effect-fade/effect-fade.scss';
-	/*import 'swiper/components/navigation/navigation.scss';
-	import 'swiper/components/pagination/pagination.scss';
-	import 'swiper/components/scrollbar/scrollbar.scss';*/
-
-
-
-
 	SwiperCore.use([EffectFade]);
-	// Import Swiper styles
 
 
 	const CAMPAIGN_LIST = gql`
@@ -91,7 +90,7 @@
 
 </script>
 
-
+<!--
 {#if apollo_can_subscribe === true}
 <Swiper effect="fade">
   <SwiperSlide>Slide 1</SwiperSlide>
@@ -99,7 +98,7 @@
   <SwiperSlide>Slide 3</SwiperSlide>
 </Swiper>
 {/if}
-
+-->
 
 {#if apollo_can_subscribe === true}
 	<ul>
@@ -112,37 +111,41 @@
 					<!-- this should show, relative to your set threshold (100%), number of cofirmed and number of unconfirmed participants: -->
 					<svelte:component this={ProgressBar} {series} height={5} showProgressValue={false} />
 
-					watchOverflow={true}
-				<Swiper
-					grabCursor={true}
-					effect={'fade'}
-					speed={1500}
-					initialSlide={1}
 					spaceBetween={50}
-					slidesPerView={1}
-					on:slideChange={() => console.log('slide change')}
-					on:swiper={(e) => console.log(e.detail[0])}>
-					  <SwiperSlide  let:data={{ isActive }} zoom={true}>
+					grabCursor={true}
+					watchOverflow={true}
+					speed={1500}
+					effect={'fade'}
 
+				<Swiper
+					initialSlide={1}
+					slidesPerView={1}
+
+					on:slideChange={(x) => console.log(x)}
+					on:swiper={(e) => console.log(e.detail)}>
+					  <SwiperSlide  let:data={{ isActive }} >
+							<div class="slide">
 						  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
 						  <div>DISMISSed</div>
-
+							</div>
 					  </SwiperSlide>
 
-					<SwiperSlide  let:data={{ isActive }} zoom={true}>
+					<SwiperSlide  let:data={{ isActive }} >
+						<div class="slide">
 						  <div>
 							  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
 							  bla bla
-							<pre>{JSON.stringify(campaign, null, '  ')}</pre>
+							{JSON.stringify(campaign)}
 							  bla.
 						  </div>
+						</div>
 					  </SwiperSlide>
 
-					  <SwiperSlide  let:data={{ isActive }} zoom={true}>
-
+					  <SwiperSlide  let:data={{ isActive }} >
+						<div class="slide">
 						  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
 						  <div>PARTICIPATEd</div>
-
+						</div>
 					  </SwiperSlide>
 
 				</Swiper>

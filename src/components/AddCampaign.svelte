@@ -61,7 +61,7 @@
         }
       };
       status = mut;
-      await mutation(client, mut);
+      mutation(client, mut);
       status = "Added successfully";
       clearForm()
     } catch(error) {
