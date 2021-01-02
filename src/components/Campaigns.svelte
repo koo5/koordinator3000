@@ -1,7 +1,6 @@
 <script type='js'>
 	import gql from 'graphql-tag';
-	import { client } from '../apollo';
-	//import { subscribe } from 'svelte-apollo';
+	import { subscribe } from 'svelte-apollo';
 	import Campaign from '../components/Campaign.svelte';
 	import { my_user } from '../my_user';
 	import { onMount } from "svelte";
@@ -10,20 +9,32 @@
 	let ProgressBar;
 	let series = [20,16];
 
+
+
+
+
 	onMount(async () => {
 		ProgressBar = (await import("@okrad/svelte-progressbar")).default;
 	});
 
 
-
-	// Import Swiper Svelte components
 	import { Swiper, SwiperSlide } from 'swiper/svelte';
+	import SwiperCore, { EffectFade } from 'swiper';
 
+
+	import 'swiper/swiper-bundle.css';
+
+	//import 'swiper/swiper.scss';
+	//import 'swiper/components/effect-fade/effect-fade.scss';
+	/*import 'swiper/components/navigation/navigation.scss';
+	import 'swiper/components/pagination/pagination.scss';
+	import 'swiper/components/scrollbar/scrollbar.scss';*/
+
+
+
+
+	SwiperCore.use([EffectFade]);
 	// Import Swiper styles
-	import 'swiper/swiper.scss';
-	//import 'swiper-bundle.css';
-
-
 
 
 	const CAMPAIGN_LIST = gql`
@@ -54,6 +65,8 @@
     }
   `;
 
+	$: apollo_can_subscribe = process.browser && window.apollo_can_subscribe;
+
 	function maybe_subscribe(my_user)
 	{
 		var my_user_id;
@@ -61,70 +74,90 @@
 			my_user_id = my_user.id
 		else
 			my_user_id = 0;
-		return process.browser ? subscribe(client, {
-				query: CAMPAIGN_LIST,
+		const result = apollo_can_subscribe ? subscribe(
+			CAMPAIGN_LIST,
+			{
 				variables: {
 					_user_id: my_user_id
 				}
 			}
-		) : null
+		) : 123;
+		console.log("maybe_subscribe:");
+		console.log(result);
+		return result
 	}
-
+	let campaigns;
 	$: campaigns = maybe_subscribe($my_user);
 
 </script>
 
-{process.browser}
-{#if process.browser}
 
-<ul>
-	{#await $campaigns}
-		<li>Loading...</li>
-	{:then result}
-
-
-		<svelte:component this={ProgressBar} {series} height={2} showProgressValue=false />
-		<button on:click={() => series = [50, 50]}>fill</button>
-		<button on:click={() => series = [0, 0]}>clear</button>
+{#if apollo_can_subscribe === true}
+<Swiper effect="fade">
+  <SwiperSlide>Slide 1</SwiperSlide>
+  <SwiperSlide>Slide 2</SwiperSlide>
+  <SwiperSlide>Slide 3</SwiperSlide>
+</Swiper>
+{/if}
 
 
-		{#each result.data.campaigns as campaign (campaign.id)}
-			<Swiper
-					grabCursor={true}
+{#if apollo_can_subscribe === true}
+	<ul>
+		{#if $campaigns.loading}
+			<li>Loading...</li>
+		{:else if $campaigns.data}
+			{#each $campaigns.data.campaigns as campaign (campaign.id)}
+				{campaign.id}:
+				<div>
+					<!-- this should show, relative to your set threshold (100%), number of cofirmed and number of unconfirmed participants: -->
+					<svelte:component this={ProgressBar} {series} height={5} showProgressValue={false} />
+
 					watchOverflow={true}
+				<Swiper
+					grabCursor={true}
 					effect={'fade'}
-					speed={150}
-				initialSlide={1}
-				spaceBetween={50}
-				slidesPerView={3}
-				on:slideChange={() => console.log('slide change')}
-				on:swiper={(e) => console.log(e.detail[0])}
-			>
-			  <SwiperSlide>DISMISS</SwiperSlide>
-			  <SwiperSlide>
-				  <Campaign {campaign}/>
-			  </SwiperSlide>
-			  <SwiperSlide>PARTICIPATE</SwiperSlide>
-			</Swiper>
+					speed={1500}
+					initialSlide={1}
+					spaceBetween={50}
+					slidesPerView={1}
+					on:slideChange={() => console.log('slide change')}
+					on:swiper={(e) => console.log(e.detail[0])}>
+					  <SwiperSlide  let:data={{ isActive }} zoom={true}>
+
+						  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
+						  <div>DISMISSed</div>
+
+					  </SwiperSlide>
+
+					<SwiperSlide  let:data={{ isActive }} zoom={true}>
+						  <div>
+							  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
+							  bla bla
+							<pre>{JSON.stringify(campaign, null, '  ')}</pre>
+							  bla.
+						  </div>
+					  </SwiperSlide>
+
+					  <SwiperSlide  let:data={{ isActive }} zoom={true}>
+
+						  <div>Current slide is { isActive ? 'active' : 'not active' }</div>
+						  <div>PARTICIPATEd</div>
+
+					  </SwiperSlide>
+
+				</Swiper>
+
+
+				</div>
+			{:else}
+				<li>No campaigns found</li>
+			{/each}
 		{:else}
-			<li>No campaigns found</li>
-		{/each}
+			error
+		{/if}
+	</ul>
+<hr>
 
-
-		<hr><hr><hr><hr><hr><hr>
-
-		{#each result.data.campaigns as campaign (campaign.id)}
-			<Campaign {campaign}/>
-		{:else}
-			<li>No campaigns found</li>
-		{/each}
-
-	{:catch error}
-		<li>Error loading campaigns:
-			<pre>{JSON.stringify(error, null, '  ')}</pre>
-		</li>
-	{/await}
-</ul>
 
 {:else}
 	loading..

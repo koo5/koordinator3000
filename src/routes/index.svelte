@@ -7,5 +7,13 @@
 
 </style>
 
-Welcome to Koordinator. Featured Campaigns:
+Welcome to Koordinator. Work in progress. <a href="https://github.com/koo5/koordinator2000/blob/master/README.md">README.md</a>. It's like kickstarter, but not for collecting money, rather, it's for coordinating collective actions.
+
+
+
+<p>Featured Campaigns:</p>
+
 <Campaigns/>
+
+
+

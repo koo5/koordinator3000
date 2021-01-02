@@ -1,7 +1,6 @@
 <script type='js'>
 	import {my_user} from '../my_user.js';
 	import gql from 'graphql-tag';
-	import {client} from '../apollo';
 	import {mutation} from 'svelte-apollo';
 
 	export let campaign;
@@ -51,7 +50,7 @@
 	{
 		try
 		{
-			await mutate(client, {
+			await mutate(/*client, */{
 				mutation: gql`
 					mutation MyMutation($id: Int!) {
 						delete_participations_by_pk(id: $id)

@@ -1,3 +1,4 @@
+//import css from 'rollup-plugin-css-only'
 import { spawn } from "child_process";
 import { performance } from "perf_hooks";
 import resolve from "@rollup/plugin-node-resolve";
@@ -54,7 +55,9 @@ export default {
 				browser: true,
 				dedupe: ["svelte"],
 			}),
-			commonjs({ sourceMap: !!sourcemap }),
+			commonjs({
+				sourceMap: !!sourcemap,
+			}),
 			typescript({
 				noEmitOnError: !dev,
 				sourceMap: !!sourcemap,
@@ -173,7 +176,17 @@ export default {
 			resolve({
 				dedupe: ["svelte"],
 			}),
-			commonjs({ sourceMap: !!sourcemap }),
+			commonjs({
+				sourceMap: !!sourcemap,
+				/*namedExports: {
+					'svelte-swiper':
+						['Swiper', 'SwiperSlide']
+				}*/
+			},
+
+			/*css({ output: 'public/build/swiper-bundle.css' }),*/
+
+			),
 			typescript({
 				noEmitOnError: true,//!dev,
 				sourceMap: !!sourcemap,
